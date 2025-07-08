@@ -3,48 +3,51 @@
 @section('title', 'Dashboard Dapur')
 
 @section('content')
-<div class="container">
-    <h1>Antrian Pesanan</h1>
+<div class="container mx-auto p-6 bg-white rounded-lg shadow-md">
+    <h1 class="text-3xl font-semibold text-gray-800 mb-6">Antrian Pesanan</h1>
 
+    <!-- Menampilkan Pesan Sukses -->
     @if (session('success'))
-        <div style="background-color: #d4edda; color: #155724; padding: 10px; margin-bottom: 20px; border-radius: 5px;">
+        <div class="bg-green-100 text-green-800 p-4 rounded-lg mb-6">
             {{ session('success') }}
         </div>
     @endif
+
+    <!-- Menampilkan Pesan Error -->
     @if (session('error'))
-        <div style="background-color: #f8d7da; color: #721c24; padding: 10px; margin-bottom: 20px; border-radius: 5px;">
+        <div class="bg-red-100 text-red-800 p-4 rounded-lg mb-6">
             {{ session('error') }}
         </div>
     @endif
 
-    <div class="order-queue" style="display: flex; flex-wrap: wrap; gap: 20px;">
+    <!-- Daftar Pesanan -->
+    <div class="order-queue grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         @forelse ($orders as $order)
-            <div class="order-card" style="border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 300px;">
-                <h3>Pesanan #{{ $order->order_number }}</h3>
-                <p>Waktu Bayar: {{ $order->paid_at->format('H:i:s') }}</p>
-                <hr>
-                <ul>
+            <div class="order-card bg-white p-4 rounded-lg shadow-lg border border-gray-300">
+                <h3 class="text-xl font-semibold text-gray-800">Pesanan #{{ $order->order_number }}</h3>
+                <p class="text-sm text-gray-500">Waktu Bayar: {{ $order->paid_at->format('H:i:s') }}</p>
+                <hr class="my-2">
+
+                <ul class="list-disc pl-5 space-y-2">
                     @foreach ($order->details as $detail)
-                        <li>
+                        <li class="text-sm text-gray-700">
                             <strong>{{ $detail->quantity }}x</strong> {{ $detail->product->name }}
                         </li>
                     @endforeach
                 </ul>
-                <hr>
 
-                {{-- ▼▼▼ PERBAIKAN ADA DI SINI ▼▼▼ --}}
-                {{-- Tombol dibungkus dalam form yang benar --}}
-                <form action="{{ route('koki.orders.complete', $order->id) }}" method="POST">
+                <hr class="my-2">
+
+                {{-- Tombol Selesaikan Pesanan --}}
+                <form action="{{ route('koki.orders.complete', $order->id) }}" method="POST" class="mt-4">
                     @csrf
-                    <button type="submit" style="width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    <button type="submit" class="w-full py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
                         Selesaikan Pesanan
                     </button>
                 </form>
-                {{-- ▲▲▲ SAMPAI SINI ▲▲▲ --}}
-
             </div>
         @empty
-            <p>Tidak ada pesanan dalam antrian.</p>
+            <p class="text-gray-500 col-span-full">Tidak ada pesanan dalam antrian.</p>
         @endforelse
     </div>
 </div>

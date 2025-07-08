@@ -51,55 +51,45 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     * Method ini tidak akan kita gunakan untuk kategori, bisa dibiarkan kosong.
+     * Show the form for editing the specified resource.
+     * Method untuk menampilkan form edit kategori (EDIT)
      */
-    public function show(Category $category)
+    public function edit(Category $category)
     {
-        //
+        // Kirim data kategori yang ingin diedit ke view
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
-     * Show the form for editing the specified resource.
-     * Method ini masih kosong, akan kita isi nanti untuk fitur Edit.
-     */
-    public function edit(Category $category)
-{
-    // Kirim data kategori yang ingin diedit ke view
-    return view('admin.categories.edit', compact('category'));
-}
-
-    /**
      * Update the specified resource in storage.
-     * Method ini masih kosong, akan kita isi nanti untuk fitur Update.
+     * Method ini untuk memperbarui data kategori (UPDATE)
      */
     public function update(Request $request, Category $category)
-{
-    // 1. Validasi data
-    $request->validate([
-        // Kita perlu mengabaikan nama kategori yang sedang diedit agar tidak error 'unique'
-        'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
-    ]);
+    {
+        // 1. Validasi data
+        $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
+        ]);
 
-    // 2. Jika validasi berhasil, update data di database
-    $category->update([
-        'name' => $request->name,
-    ]);
+        // 2. Jika validasi berhasil, update data kategori
+        $category->update([
+            'name' => $request->name,
+        ]);
 
-    // 3. Redirect kembali ke halaman index dengan pesan sukses
-    return redirect()->route('admin.categories.index')->with('success', 'Kategori berhasil diperbarui.');
-}
+        // 3. Redirect kembali ke halaman index dengan pesan sukses
+        return redirect()->route('admin.categories.index')->with('success', 'Kategori berhasil diperbarui.');
+    }
 
     /**
      * Remove the specified resource from storage.
-     * Method ini masih kosong, akan kita isi nanti untuk fitur Delete.
+     * Method ini untuk menghapus kategori (DELETE)
      */
     public function destroy(Category $category)
-{
-    // Hapus data dari database
-    $category->delete();
+    {
+        // Hapus data kategori
+        $category->delete();
 
-    // Redirect kembali dengan pesan sukses
-    return redirect()->route('admin.categories.index')->with('success', 'Kategori berhasil dihapus.');
-}
+        // Redirect kembali dengan pesan sukses
+        return redirect()->route('admin.categories.index')->with('success', 'Kategori berhasil dihapus.');
+    }
 }

@@ -3,38 +3,36 @@
 @section('title', 'Tambah Kategori Baru')
 
 @section('content')
-<div class="container">
-    <h1>Tambah Kategori Baru</h1>
+<div class="container mx-auto p-6 bg-white rounded-lg shadow-md">
+    <h1 class="text-3xl font-semibold text-gray-800 mb-6">Tambah Kategori Baru</h1>
 
-    {{-- Menampilkan error validasi umum jika ada --}}
-    @if ($errors->any())
-        <div style="color: red;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+    <!-- Pesan Success dan Error -->
+    @if (session('success'))
+        <div class="bg-green-100 text-green-800 p-4 rounded-lg mb-6">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if (session('error'))
+        <div class="bg-red-100 text-red-800 p-4 rounded-lg mb-6">
+            {{ session('error') }}
         </div>
     @endif
 
-    {{-- Form ini akan mengirim data ke route 'admin.categories.store' menggunakan method POST --}}
     <form action="{{ route('admin.categories.store') }}" method="POST">
-        @csrf  {{-- Token keamanan Cross-Site Request Forgery, wajib ada di setiap form Laravel --}}
+        @csrf
 
-        <div>
-            <label for="name">Nama Kategori</label>
-            <br>
-            {{-- Fungsi old('name') akan menjaga input pengguna jika validasi gagal dan halaman di-reload --}}
-            <input type="text" id="name" name="name" value="{{ old('name') }}" style="width: 100%; padding: 8px; margin-top: 5px;">
-
-            {{-- Menampilkan error spesifik untuk field 'name' --}}
-            @error('name')
-                <div style="color: red; font-size: 0.9em; margin-top: 5px;">{{ $message }}</div>
-            @enderror
+        <!-- Input Nama Kategori -->
+        <div class="mb-4">
+            <label for="name" class="block text-sm font-medium text-gray-700">Nama Kategori</label>
+            <input type="text" id="name" name="name" value="{{ old('name') }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 mt-2" placeholder="Nama kategori" required>
+            @error('name') <div class="text-red-500 text-sm mt-2">{{ $message }}</div> @enderror
         </div>
 
-        <button type="submit" style="margin-top: 15px;">Simpan</button>
-        <a href="{{ route('admin.categories.index') }}" style="margin-left: 10px;">Batal</a>
+        <!-- Tombol Simpan -->
+        <button type="submit" class="bg-orange-600 text-white px-6 py-2 rounded-lg hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500">Simpan</button>
+
+        <!-- Tombol Batal -->
+        <a href="{{ route('admin.categories.index') }}" class="ml-4 text-gray-600 hover:text-orange-500">Batal</a>
     </form>
 </div>
 @endsection
