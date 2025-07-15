@@ -1,51 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Admin Panel') - Makanan Kantin</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-orange-50 font-sans text-gray-900">
+@extends('layouts.admin')
 
-    <!-- Header -->
-    <header class="bg-orange-600 p-4">
-        <nav class="flex justify-between items-center max-w-6xl mx-auto">
-            <div class="text-white font-semibold text-xl">
-                Admin 
-            </div>
-            <div class="space-x-4">
-                <a href="{{ route('admin.dashboard') }}" class="text-white hover:text-orange-300">Dashboard</a>
-                <a href="{{ route('admin.categories.index') }}" class="text-white hover:text-orange-300">Kategori</a>
-                <a href="{{ route('admin.products.index') }}" class="text-white hover:text-orange-300">Produk</a>
-                <a href="{{ route('admin.users.index') }}" class="text-white hover:text-orange-300">Staff</a>
-                <!-- Logout Form -->
-                <form method="POST" action="{{ route('logout') }}" style="display: inline;">
-                    @csrf
-                    <button type="submit" class="bg-orange-700 text-white px-4 py-2 rounded hover:bg-orange-800">
-                        Logout
-                    </button>
-                </form>
-            </div>
-        </nav>
-    </header>
+@section('title', 'Dashboard')
 
-    <!-- Main Content -->
-    <main class="max-w-6xl mx-auto mt-8 px-4">
-        @yield('content')
-    </main>
+@section('content')
+<div class="text-center">
+  <h1 class="text-4xl sm:text-5xl font-extrabold text-orange-600 mb-4">
+    Selamat Datang di Dashboard Admin 🍽️
+  </h1>
+  <p class="text-lg sm:text-xl text-gray-600 mb-10">
+    Kelola kategori, produk, dan staff dengan mudah melalui menu di atas.
+  </p>
 
-    <!-- Add larger text for the Dashboard -->
-    @section('content')
-        <div class="text-center mt-20">
-            <h1 class="text-5xl font-bold text-orange-700">
-                Selamat Datang di Dashboard Admin
-            </h1>
-            <p class="mt-4 text-xl text-gray-600">
-                Kelola kategori, produk, dan staff dengan mudah melalui menu di atas.
-            </p>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Kategori -->
+    <a href="{{ route('admin.categories.index') }}" class="block hover:scale-[1.01] transition">
+      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg border-t-4 border-orange-500 text-left">
+        <div class="flex items-center gap-3 mb-2">
+          <i data-lucide="list" class="text-orange-500 w-5 h-5"></i>
+          <h2 class="text-lg font-semibold text-orange-700">Kategori</h2>
         </div>
-    @show
+        <p class="text-sm text-gray-600 mt-1">Kelola jenis makanan dan minuman yang tersedia.</p>
+      </div>
+    </a>
 
-</body>
-</html>
+    <!-- Produk -->
+    <a href="{{ route('admin.products.index') }}" class="block hover:scale-[1.01] transition">
+      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg border-t-4 border-orange-500 text-left">
+        <div class="flex items-center gap-3 mb-2">
+          <i data-lucide="pizza" class="text-orange-500 w-5 h-5"></i>
+          <h2 class="text-lg font-semibold text-orange-700">Produk</h2>
+        </div>
+        <p class="text-sm text-gray-600 mt-1">Tambah, edit, dan hapus menu makanan kantin.</p>
+      </div>
+    </a>
+
+    <!-- Staff -->
+    <a href="{{ route('admin.users.index') }}" class="block hover:scale-[1.01] transition">
+  <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg border-t-4 border-orange-500 text-left">
+    <div class="flex items-center gap-3 mb-2">
+      <i data-lucide="users" class="text-orange-500 w-5 h-5"></i>
+      <h2 class="text-lg font-semibold text-orange-700">Staff</h2>
+    </div>
+    <p class="text-sm text-gray-600 mt-1">Kelola akun dan peran staff kantin.</p>
+  </div>
+</a>
+  </div>
+</div>
+@endsection

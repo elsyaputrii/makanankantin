@@ -3,23 +3,45 @@
 @section('title', 'Edit Kategori')
 
 @section('content')
-<div class="container">
-    <h1>Edit Kategori</h1>
+<div class="max-w-xl mx-auto px-4 py-8 bg-white rounded-xl shadow-md">
 
-    <form action="{{ route('admin.categories.update', $category->id) }}" method="POST">
-        @csrf
-        @method('PUT') {{-- Method spoofing, karena HTML form tidak mendukung PUT --}}
+  <h1 class="text-xl font-bold text-orange-600 mb-6">@yield('title')</h1>
 
-        <div>
-            <label for="name">Nama Kategori</label>
-            <input type="text" id="name" name="name" value="{{ old('name', $category->name) }}">
-            @error('name')
-                <div style="color: red;">{{ $message }}</div>
-            @enderror
-        </div>
+  @if ($errors->any())
+    <div class="mb-4 p-4 bg-red-100 text-red-700 rounded-md">
+      <ul class="list-disc pl-5 space-y-1">
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
 
-        <button type="submit" style="margin-top: 10px;">Update</button>
-        <a href="{{ route('admin.categories.index') }}">Batal</a>
-    </form>
+  <form action="{{ route('admin.categories.update', $category->id) }}" method="POST" class="space-y-6">
+    @csrf
+    @method('PUT') {{-- karena HTML tidak support PUT langsung --}}
+
+    <!-- Nama Kategori -->
+    <div>
+      <label for="name" class="block text-lg font-semibold text-gray-700 mb-1">Nama Kategori</label>
+      <input type="text" name="name" id="name" value="{{ old('name', $category->name) }}" required
+             class="w-full border border-gray-300 rounded-md px-4 py-2 shadow-sm focus:ring-orange-500 focus:border-orange-500">
+      @error('name')
+        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+      @enderror
+    </div>
+
+    <!-- Tombol Aksi -->
+    <div class="flex gap-4 pt-2">
+      <button type="submit"
+              class="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-md font-medium shadow">
+        Update
+      </button>
+      <a href="{{ route('admin.categories.index') }}"
+         class="text-sm text-gray-600 hover:underline self-center">
+        Batal
+      </a>
+    </div>
+  </form>
 </div>
 @endsection

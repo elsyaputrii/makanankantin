@@ -11,6 +11,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+    {{-- Tailwind CDN --}}
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    {{-- (Opsional) Custom Tailwind Config --}}
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF7A00',
+                        success: '#28a745',
+                        lightgray: '#f8f9fa'
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        lg: '12px',
+                    }
+                }
+            }
+        }
+    </script>
+
     {{-- CSS Kustom untuk Tampilan Dashboard --}}
     <style>
         :root {

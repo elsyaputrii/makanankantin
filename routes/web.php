@@ -24,7 +24,7 @@ Route::post('/keranjang/tambah/{product}', [OrderPageController::class, 'addToCa
 Route::post('/keranjang/update/{id}', [OrderPageController::class, 'updateCart'])->name('cart.update');
 Route::get('/keranjang/hapus/{id}', [OrderPageController::class, 'removeFromCart'])->name('cart.remove');
 Route::post('/pesanan/buat', [OrderPageController::class, 'placeOrder'])->name('order.place');
-Route::get('/pesanan/sukses/{order}', [OrderPageController::class, 'orderSuccess'])->name('order.success');
+Route::get('/pesanan/sukses/{order}', [OrderPageController::class, 'orderSuccessFull'])->name('order.success');
 Route::get('/pesanan/bayar/{order}', [OrderPageController::class, 'paymentPage'])->name('order.payment');
 
 Route::get('/', function () {

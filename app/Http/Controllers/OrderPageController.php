@@ -47,15 +47,23 @@ class OrderPageController extends Controller
     /**
      * Mengupdate kuantitas item di keranjang.
      */
-    public function updateCart(Request $request, $id)
-    {
-        $cart = session()->get('cart');
-        if (isset($cart[$id])) {
-            $cart[$id]['quantity'] = $request->quantity;
-            session()->put('cart', $cart);
-        }
-        return redirect()->back()->with('success', 'Keranjang berhasil diperbarui.');
+  public function updateCart(Request $request, $id)
+{
+    // ⬅️ Tambahkan log untuk lihat isinya
+    logger('Request masuk updateCart', ['id' => $id, 'quantity' => $request->quantity]);
+
+    $cart = session()->get('cart');
+
+    if (isset($cart[$id])) {
+        $cart[$id]['quantity'] = $request->quantity;
+        session()->put('cart', $cart);
     }
+
+    return redirect()->back()->with('success', 'Keranjang berhasil diperbarui.');
+}
+
+
+
 
     /**
      * Menghapus item dari keranjang.
@@ -145,20 +153,55 @@ class OrderPageController extends Controller
     /**
      * Menampilkan halaman pembayaran Midtrans.
      */
-    public function paymentPage(Order $order)
+    public function paymentPage($orderId)
     {
+        $order = Order::findOrFail($orderId);
+
+        Config::$serverKey = config('midtrans.server_key');
+        Config::$isProduction = config('midtrans.is_production');
+        Config::$isSanitized = true;
+        Config::$is3ds = true;
+
+        $params = [
+            'transaction_details' => [
+                'order_id' => $order->order_number, // ⚠️ Jangan pakai ID angka
+                'gross_amount' => $order->total_price,
+            ],
+            'customer_details' => [
+                'first_name' => auth()->user()->name ?? 'Pelanggan',
+                'email' => auth()->user()->email ?? 'default@email.com',
+            ],
+        ];
+
+        $snapToken = Snap::getSnapToken($params);
+
+        // ⬇️ Kirim clientKey juga!
         return view('customer.payment', [
             'order' => $order,
-            'snapToken' => $order->payment_token,
-            'clientKey' => config('midtrans.client_key')
+            'snapToken' => $snapToken,
+            'clientKey' => config('midtrans.client_key') 
         ]);
     }
 
     /**
-     * Menampilkan halaman sukses setelah memesan.
+     * Menampilkan halaman sukses setelah pembayaran selesai.
      */
-    public function orderSuccess(Order $order)
+    public function orderSuccess($id)
     {
+        $order = Order::findOrFail($id);
+        return view('customer.success', ['orderId' => $order->id]);
+    }
+
+    /**
+     * Menampilkan halaman sukses (versi lengkap) dengan data order dikirim ke view.
+     * ✅ Tambahan agar blade bisa akses $order secara penuh
+     */
+    public function orderSuccessFull($id)
+    {
+        $order = Order::findOrFail($id);
+         $order = Order::findOrFail($id);
         return view('customer.success', compact('order'));
     }
 }
+
+

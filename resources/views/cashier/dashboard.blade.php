@@ -100,7 +100,8 @@
                     @endforelse
                 </tbody>
             </table>
-            <div style="margin-top: 15px;">{{ $payment_history->links() }}</div>
+            <div style="margin-top: 15px;">{{ $payment_history->appends(request()->query())->links() }}
+</div>
         </div>
     </div>
 </div>

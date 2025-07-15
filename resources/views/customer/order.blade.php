@@ -119,6 +119,12 @@
     {{-- Kolom Kanan: Keranjang Belanja --}}
     <div class="cart-container">
         <div class="cart-box">
+            @if (session('success'))
+    <div style="background-color: #d4edda; color: #155724; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+        {{ session('success') }}
+    </div>
+@endif
+
             <h2 style="font-weight: 600;">Keranjang Anda</h2>
             <hr style="margin-bottom: 1.5rem; border-color: #eee;">
             @if(empty($cart))

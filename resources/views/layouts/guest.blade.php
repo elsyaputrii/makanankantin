@@ -11,6 +11,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+    {{-- Tailwind CSS CDN --}}
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    {{-- Optional: Custom Tailwind Config --}}
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF7A00',
+                        background: '#F9F9F9',
+                        lightgray: '#dddddd'
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        custom: '12px'
+                    }
+                }
+            }
+        }
+    </script>
+
     {{-- Style untuk Halaman Guest --}}
     <style>
         :root {
@@ -59,7 +83,7 @@
             padding: 12px 15px;
             border: 1px solid var(--light-gray);
             border-radius: 8px;
-            box-sizing: border-box; /* Penting agar padding tidak menambah lebar */
+            box-sizing: border-box;
         }
         .btn {
             display: inline-block;

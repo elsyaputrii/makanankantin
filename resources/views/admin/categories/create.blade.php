@@ -3,7 +3,8 @@
 @section('title', 'Tambah Kategori Baru')
 
 @section('content')
-<div class="container mx-auto p-6 bg-white rounded-lg shadow-md">
+<div class="max-w-xl mx-auto px-4 py-8 bg-[#fefdfb] rounded-xl shadow-md">
+
     <h1 class="text-3xl font-semibold text-gray-800 mb-6">Tambah Kategori Baru</h1>
 
     <!-- Pesan Success dan Error -->

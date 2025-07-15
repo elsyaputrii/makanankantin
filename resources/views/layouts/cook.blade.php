@@ -13,7 +13,10 @@
     <header class="bg-cream-200 py-4">
         <nav class="container mx-auto flex justify-between items-center">
             <!-- Tautan Dashboard Dapur -->
-            <a href="{{ route('koki.dashboard') }}" class="text-lg font-semibold text-gray-800 hover:text-orange-600">Dashboard Dapur</a>
+            <a href="{{ route('koki.dashboard') }}" class="text-2xl font-bold text-orange-600 hover:text-orange-700 flex items-center gap-2">
+    🍳 Dapur Panel
+</a>
+
 
             <!-- Tombol Logout -->
             <form method="POST" action="{{ route('logout') }}" class="inline-block">
