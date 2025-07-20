@@ -6,14 +6,26 @@
 
 Aplikasi pemesanan makanan/minuman berbasis web untuk kantin atau toko offline menggunakan sistem kios. Aplikasi ini didesain untuk memudahkan pelanggan melakukan pemesanan secara mandiri di lokasi.
 
-## Fitur Utama
+---
+
+## 📁 FILE AAS & LAPORAN
+
+- 🎥 **Video Presentasi:** [Link ke Video Presentasi](https://youtu.be/xckvnD8AWlk?si=eLSNTOrf7R7igsyk)
+- 🎞️ **Video Tutorial Penggunaan Aplikasi:** [Link ke Video Demo](https://youtu.be/8bF_qv44r_4?si=a7ZaHORC3QqEa8wn)
+- 📘 **Laporan Proyek (PDF):** [Laporan_PBL_IF-2D-malam_kel 4.pdf](Laporan_PBL_IF-2D-malam_kel%204.pdf)
+
+---
+
+## ✨ Fitur Utama
 
 * **Sistem Pemesanan Kios:** Pelanggan dapat melihat menu dan melakukan pemesanan langsung dari perangkat kios.
 * **Integrasi Midtrans:** Mendukung pembayaran non-tunai melalui Midtrans (misalnya QRIS, Virtual Account, dll.).
 * **Manajemen Produk Sederhana:** Admin dapat mengelola daftar produk yang tersedia.
 * **Otentikasi Pengguna:** Menggunakan Laravel Breeze untuk otentikasi admin.
 
-## Teknologi yang Digunakan
+---
+
+## 🔧 Teknologi yang Digunakan
 
 * **Backend:** Laravel 10 (PHP)
 * **Database:** MySQL
@@ -22,7 +34,9 @@ Aplikasi pemesanan makanan/minuman berbasis web untuk kantin atau toko offline m
 * **Pembayaran:** Midtrans
 * **Testing:** PHPUnit, PestPHP (default Laravel)
 
-## Prasyarat Instalasi
+---
+
+## 🛠️ Prasyarat Instalasi
 
 Pastikan kamu memiliki perangkat lunak berikut terinstal di sistemmu:
 
@@ -32,7 +46,9 @@ Pastikan kamu memiliki perangkat lunak berikut terinstal di sistemmu:
 * **XAMPP / WAMP / MAMP** (untuk Apache dan MySQL)
 * **Ngrok** (Opsional, untuk pengujian webhook Midtrans secara lokal)
 
-## Panduan Instalasi
+---
+
+## 🚀 Panduan Instalasi
 
 Ikuti langkah-langkah di bawah ini untuk mengatur dan menjalankan proyek secara lokal:
 
