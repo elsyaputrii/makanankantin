@@ -12,9 +12,8 @@ Aplikasi pemesanan makanan/minuman berbasis web untuk kantin atau toko offline m
 
 - 🎥 **Video Presentasi:** [Link ke Video Presentasi](https://youtu.be/xckvnD8AWlk?si=eLSNTOrf7R7igsyk)
 - 🎞️ **Video Tutorial Penggunaan Aplikasi:** [Link ke Video Demo](https://youtu.be/8bF_qv44r_4?si=a7ZaHORC3QqEa8wn)
-- 📘 **Laporan Proyek (PDF):** [Laporan_PBL_IF-2D-malam_kel 4.pdf](Laporan_PBL_IF-2D-malam_kel%204.pdf)
+- 📘 **Laporan Proyek (Google Docs):** [Klik untuk melihat laporan akhir](https://docs.google.com/document/d/1Va64GgMM-uTxuXN5yj2GioFLtZ3HsI-DtzzAohgAbOc/edit?usp=sharing)
 
----
 
 ## ✨ Fitur Utama
 
